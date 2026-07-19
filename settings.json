@@ -1,12 +1,28 @@
 {
-  "lastChangelogVersion": "0.80.3",
+  "lastChangelogVersion": "0.80.6",
   "defaultProvider": "titan",
   "defaultModel": "qwen3.6-27b-ud",
-  "defaultThinkingLevel": "medium",
+  "defaultThinkingLevel": "high",
+  "hideThinkingBlock": true,
   "theme": "dark",
   "packages": [
+    "npm:@mjakl/pi-subagent",
     "npm:pi-observational-memory",
-    "npm:@mjakl/pi-subagent"
+    "npm:pi-mermaid"
   ],
-  "hideThinkingBlock": true
+  "observational-memory": {
+    "observeAfterTokens": 10000,
+    "reflectAfterTokens": 20000,
+    "compactAfterTokens": 81000,
+    "observationsPoolMaxTokens": 20000,
+    "observationsPoolTargetTokens": 10000,
+    "agentMaxTurns": 16,
+    "model": {
+      "provider": "enceladus",
+      "id": "qwen/qwen3.6-35b-a3b",
+      "thinking": "off"
+    },
+    "passive": false,
+    "debugLog": true
+  }
 }

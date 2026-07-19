@@ -3,6 +3,13 @@ auth.json
 
 # Chat sessions (large, machine-specific)
 sessions/
+*.jsonl
+
+# Observational memory & debug logs
+observational-memory/
+
+# ACP session state
+pi-acp/
 
 # Machine-specific binaries
 bin/
@@ -10,5 +17,8 @@ bin/
 # macOS
 .DS_Store
 
-# npm (node_modules already covered by npm/.gitignore)
+# npm
 npm/node_modules/
+
+# Backup files
+*.save
