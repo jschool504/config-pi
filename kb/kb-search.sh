@@ -3,10 +3,13 @@
 # Usage: kb-search.sh "<query>"
 #
 # Scoring (case-insensitive):
-#   tag match    → 3× weight
-#   title match  → 2× weight
-#   content match→ 1× weight
+#   tag match    → 3× weight per term
+#   title match  → 2× weight per term
+#   content match→ 1× weight per term
 #   hits field   → tiebreaker (higher wins)
+#
+# Multi-word queries are split on whitespace and each term is scored
+# independently. Scores from all terms are aggregated.
 
 set -euo pipefail
 
@@ -19,7 +22,15 @@ QUERY="$1"
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 ENTRIES_DIR="$SCRIPT_DIR/entries"
 QUERY_LC="$(echo "$QUERY" | tr '[:upper:]' '[:lower:]')"
-ESCAPED_QUERY="$(echo "$QUERY_LC" | sed 's/[.[\*^$()+?{|\\]/\\&/g')"
+
+# Split query into terms on whitespace
+read -ra TERMS <<< "$QUERY_LC"
+
+# Escape each term for grep (treat as literal strings)
+declare -a ESCAPED_TERMS=()
+for term in "${TERMS[@]}"; do
+  ESCAPED_TERMS+=("$(echo "$term" | sed 's/[.[\*^$()+?{|\\]/\\&/g')")
+done
 
 if [[ ! -d "$ENTRIES_DIR" ]]; then
   echo "No matches found."
@@ -75,51 +86,57 @@ while IFS= read -r -d '' filepath; do
   # Strip trailing newline from content
   content="${content%$'\n'}"
   content_lc="$(echo "$content" | tr '[:upper:]' '[:lower:]')"
+  title_lc="$(echo "$title" | tr '[:upper:]' '[:lower:]')"
 
   # ---- scoring ----
   score=0
+  snippet_parts=""
 
-  # Tag match (3×) – check comma-separated tags
-  tag_match=0
+  # Parse tags into array (trimmed, lowercase)
   IFS=',' read -ra tag_arr <<< "$tags"
+  declare -a clean_tags=()
   for t in "${tag_arr[@]}"; do
-    t_trimmed="$(echo "$t" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')"
-    if [[ "$t_trimmed" == "$QUERY_LC" ]]; then
-      tag_match=1
-      break
+    t_trimmed="$(echo "$t" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//' | tr '[:upper:]' '[:lower:]')"
+    clean_tags+=("$t_trimmed")
+  done
+
+  for idx in "${!TERMS[@]}"; do
+    term="${TERMS[$idx]}"
+    escaped="${ESCAPED_TERMS[$idx]}"
+
+    # Tag match (3×) – check if any tag contains this term
+    for tag in "${clean_tags[@]}"; do
+      if echo "$tag" | grep -qi "$escaped"; then
+        score=$((score + 3))
+        snippet_parts="${snippet_parts}tags: $tag "
+        break  # don't double-count same term across tags
+      fi
+    done
+
+    # Title match (2×) – check if title contains this term
+    if echo "$title_lc" | grep -qi "$escaped"; then
+      score=$((score + 2))
+      if [[ -z "$snippet_parts" ]]; then
+        snippet_parts="$title "
+      fi
+    fi
+
+    # Content match (1×) – check if content contains this term
+    if [[ -n "$content" ]] && echo "$content_lc" | grep -qi "$escaped"; then
+      score=$((score + 1))
+      if [[ -z "$snippet_parts" ]]; then
+        snippet_parts="$(echo "$content" | sed '/^[[:space:]]*$/d' | head -1) "
+      fi
     fi
   done
-  if [[ $tag_match -eq 1 ]]; then
-    score=$((score + 3))
-  fi
 
-  # Title match (2×)
-  if echo "$title" | grep -qi "$ESCAPED_QUERY"; then
-    score=$((score + 2))
-  fi
-
-  # Content match (1×)
-  content_match=0
-  if [[ -n "$content" ]] && echo "$content_lc" | grep -qi "$ESCAPED_QUERY"; then
-    content_match=1
-    score=$((score + 1))
-  fi
+  unset clean_tags
 
   # Only record if there's at least one match
   if [[ $score -gt 0 ]]; then
     found=1
 
-    # Build snippet (priority: tag snippet > title snippet > first content line)
-    snippet=""
-    if [[ $tag_match -eq 1 && -z "$snippet" ]]; then
-      snippet="tags: $tags"
-    fi
-    if echo "$title" | grep -qi "$ESCAPED_QUERY" && [[ -z "$snippet" ]]; then
-      snippet="$title"
-    fi
-    if [[ $content_match -eq 1 && -z "$snippet" ]]; then
-      snippet="$(echo "$content" | sed '/^[[:space:]]*$/d' | head -1)"
-    fi
+    snippet="${snippet_parts% }"  # trim trailing space
 
     printf '%s\t%s\t%s\t%s\t%s\t%s\n' "$score" "$slug" "$title" "$tags" "$hits" "$snippet" >> "$tmpfile"
   fi
