@@ -13,6 +13,6 @@ Focus on:
 
 Be liberal about what you store. If the user provided an optional topic (${1:-""}), focus your search on items related to that topic. Otherwise, scan broadly.
 
-For each identified takeaway, generate a concise title, relevant tags, and well-structured content. Then, spawn the `memory` agent to execute `./kb/kb-add.sh` with these details. 
+For each identified takeaway, spawn the `memory` agent to execute the search-and-merge workflow: search for existing entries, and append to them if related, or create a new entry if not.
 
-Report back a list of what was retained.
+Report back a list of what was retained and where it was stored (new entry or appended to existing).
