@@ -1,5 +1,5 @@
 {
-  "lastChangelogVersion": "0.80.6",
+  "lastChangelogVersion": "0.80.10",
   "defaultProvider": "titan",
   "defaultModel": "qwen3.6-27b-ud",
   "defaultThinkingLevel": "high",

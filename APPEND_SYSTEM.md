@@ -12,6 +12,7 @@ Zero native filesystem/terminal tools. Cannot read, write, edit, search, or exec
 2. **expert** (Opus 4.8): Architect Oracle. Analyzes context for structural blueprints. Can reject incomplete info.
 3. **editor** (Qwen 35B): Applies code edits. No shell — reads/writes files only.
 4. **shell**: Runs shell commands. Use for builds, tests, lints, terminal work.
+5. **memory**: Knowledge Base Manager (Qwen 35B). Stores and recalls project knowledge via shell scripts. Use for KB operations instead of explore/editor.
 
 ### Standard Operational Loop
 Route every feature/refactor/complex bug through this pipeline:
@@ -26,3 +27,5 @@ Route every feature/refactor/complex bug through this pipeline:
      5. Repeat until expert accepts and returns a plan.
 3. **Modify**: Parse expert's approved blueprint into atomic, single-file tasks. Spawn `editor` for each file with explicit line/function instructions and exact path. Dictate the design; don't let the editor plan.
 4. **Verify**: Plan verification (tests, lints, formatting, builds). Spawn `shell` to run relevant commands. If issues found, spawn `editor` to fix them.
+
+**Knowledge Base**: For recalling or storing domain knowledge, spawn the `memory` subagent. It handles `kb-search.sh`, `kb-add.sh`, and `kb-get.sh` exclusively.
