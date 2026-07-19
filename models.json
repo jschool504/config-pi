@@ -79,7 +79,6 @@
     "titan": {
       "baseUrl": "http://titan/v1",
       "api": "openai-completions",
-      "apiKey": "sk-local-8c7bd90e9dbab6577e040dd2929cd1b6",
       "authHeader": true,
       "compat": {
         "supportsDeveloperRole": false,
