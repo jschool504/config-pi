@@ -1,0 +1,12 @@
+{
+  "lastChangelogVersion": "0.80.3",
+  "defaultProvider": "titan",
+  "defaultModel": "qwen3.6-27b-ud",
+  "defaultThinkingLevel": "medium",
+  "theme": "dark",
+  "packages": [
+    "npm:pi-observational-memory",
+    "npm:@mjakl/pi-subagent"
+  ],
+  "hideThinkingBlock": false
+}

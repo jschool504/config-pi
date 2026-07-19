@@ -1,0 +1,8 @@
+{
+  "name": "pi-extensions",
+  "private": true,
+  "dependencies": {
+    "@mjakl/pi-subagent": "^2.1.0",
+    "pi-observational-memory": "^3.0.2"
+  }
+}

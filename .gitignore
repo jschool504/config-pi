@@ -1,0 +1,14 @@
+# Auth / secrets
+auth.json
+
+# Chat sessions (large, machine-specific)
+sessions/
+
+# Machine-specific binaries
+bin/
+
+# macOS
+.DS_Store
+
+# npm (node_modules already covered by npm/.gitignore)
+npm/node_modules/
