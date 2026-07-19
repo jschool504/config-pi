@@ -22,3 +22,6 @@ sed -i '' "s/^hits: .*/hits: ${NEW}/" "$FILE"
 
 # Print full file content
 cat "$FILE"
+
+# Commit and push
+cd /Users/jschool/.pi/agent && git add -A && git commit -m "kb: bump hits for $SLUG" && git push

@@ -50,3 +50,6 @@ ${CONTENT}
 EOF
 
 echo "Created: entries/${SLUG}.md"
+
+# Commit and push
+cd /Users/jschool/.pi/agent && git add -A && git commit -m "kb: add entry $SLUG" && git push
