@@ -8,5 +8,5 @@
     "npm:pi-observational-memory",
     "npm:@mjakl/pi-subagent"
   ],
-  "hideThinkingBlock": false
+  "hideThinkingBlock": true
 }
