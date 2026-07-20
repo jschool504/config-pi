@@ -2,7 +2,7 @@
 title: "Design System: On-the-Rails JSON Schema"
 tags: [prototype-web-builder,design-system,architecture,llm,json-schema]
 created: 2026-07-19
-hits: 0
+hits: 1
 ---
 ## Concept
 "On-the-rails" approach: LLM generates a structured JSON schema from a fixed set of predefined section types, rather than free-form HTML or unconstrained output.

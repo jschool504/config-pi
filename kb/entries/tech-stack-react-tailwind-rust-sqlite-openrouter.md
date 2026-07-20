@@ -2,7 +2,7 @@
 title: "Tech Stack: React + Tailwind + Rust + SQLite + OpenRouter"
 tags: [prototype-web-builder,tech-stack,react,tailwind,rust,sqlite,openrouter]
 created: 2026-07-19
-hits: 0
+hits: 1
 ---
 ## Frontend
 - **React + Tailwind**: UI framework and styling for the chat interface and live preview

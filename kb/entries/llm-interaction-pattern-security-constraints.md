@@ -2,7 +2,7 @@
 title: "LLM Interaction Pattern & Security Constraints"
 tags: [prototype-web-builder,llm-interaction,json-patch,validation,security,rate-limiting]
 created: 2026-07-19
-hits: 0
+hits: 1
 ---
 ## LLM Interaction
 - **JSON patches** for incremental updates instead of full re-generation (saves tokens)
