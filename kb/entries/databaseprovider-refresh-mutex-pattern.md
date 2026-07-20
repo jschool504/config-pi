@@ -2,7 +2,7 @@
 title: "DatabaseProvider refresh() mutex pattern"
 tags: [database,database-provider,bug-fix,mutex,refresh]
 created: 2026-07-20
-hits: 0
+hits: 1
 ---
 The DatabaseProvider.refresh() method uses a coalescing mutex pattern via  to prevent concurrent refresh storms.
 
