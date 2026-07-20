@@ -2,7 +2,7 @@
 title: "Design System: On-the-Rails JSON Schema"
 tags: [prototype-web-builder,design-system,architecture,llm,json-schema]
 created: 2026-07-19
-hits: 1
+updated: 2026-07-20hits: 1
 ---
 ## Concept
 "On-the-rails" approach: LLM generates a structured JSON schema from a fixed set of predefined section types, rather than free-form HTML or unconstrained output.
@@ -20,3 +20,10 @@ hits: 1
 - Prevents LLM hallucination of invalid HTML/CSS
 - Enables incremental JSON patch updates (token-efficient)
 - Consistent, professional output every time
+
+### Update: 2026-07-20
+
+## Design Constraints (v2)
+- **Fonts**: System fonts only — no external font loads, no Google Fonts. Prioritizes fast page load and privacy.
+- **Colors**: Predefined Tailwind color names only (e.g., indigo-600, slate-900). No raw hex codes in generated output.
+- **MVP Section Types**: Hero, Features, About, Testimonials, CTA, Footer (streamlined from original list)
