@@ -2,7 +2,7 @@
 title: "Test Mocking — Settings.prototype.get Best Practices"
 tags: [test-mocking,jest,mock-patterns,settings,prototype-pollution]
 created: 2026-07-20
-hits: 0
+hits: 1
 ---
 ## Safe Mock Pattern
 
