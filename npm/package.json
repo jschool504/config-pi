@@ -2,6 +2,7 @@
   "name": "pi-extensions",
   "private": true,
   "dependencies": {
+    "@juicesharp/rpiv-voice": "^1.20.0",
     "@mjakl/pi-subagent": "^2.1.0",
     "pi-mermaid": "^0.3.0",
     "pi-observational-memory": "^3.0.2"

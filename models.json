@@ -6,35 +6,11 @@
       "apiKey": "xxx",
       "models": [
         {
-          "id": "qwen/qwen3.6-35b-a3b",
-          "name": "Qwen 3.6 35B",
-          "reasoning": true,
-          "input": ["text"],
-          "contextWindow": 40960,
-          "maxTokens": 8192
-        },
-        {
-          "id": "google/gemma-4-26b-a4b-qat",
-          "name": "Gemma 4 26B",
-          "reasoning": true,
-          "input": ["text"],
-          "contextWindow": 131072,
-          "maxTokens": 8192
-        },
-        {
           "id": "google/gemma-4-e4b",
           "name": "Gemma 4 E4B",
           "reasoning": false,
           "input": ["text"],
           "contextWindow": 131072,
-          "maxTokens": 8192
-        },
-        {
-          "id": "google/gemma-4-e2b",
-          "name": "Gemma 4 E2B",
-          "reasoning": false,
-          "input": ["text"],
-          "contextWindow": 16384,
           "maxTokens": 8192
         }
       ]
@@ -52,27 +28,9 @@
       },
       "models": [
         {
-          "id": "qwen/qwen3.6-27b",
-          "name": "Qwen3.6 27B",
-          "contextWindow": 131072
-        },
-        {
           "id": "qwen/qwen3.6-35b-a3b",
           "name": "Qwen3.6 35B",
           "contextWindow": 131072
-        },
-        {
-          "id": "google/gemma-4-e4b",
-          "name": "Gemma 4 E4B",
-          "contextWindow": 131072
-        },
-	{
-          "id": "gemma-4-26b-a4b-it-ud",
-          "name": "Gemma 4 26B",
-          "reasoning": true,
-          "input": ["text"],
-          "contextWindow": 131072,
-          "maxTokens": 8192
         }
       ]
     },
@@ -88,16 +46,6 @@
       },
       "models": [
         {
-          "id": "qwen3.6-35b-a3b",
-          "name": "Qwen3.6 35B",
-          "reasoning": false,
-          "input": ["text"],
-          "contextWindow": 65536,
-          "maxTokens": 16384,
-          "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
-          "headers": { "X-Model-Route": "qwen3.6-35b-a3b-ud" }
-        },
-        {
           "id": "qwen3.6-27b-ud",
           "name": "Qwen3.6 27B",
           "reasoning": false,
@@ -106,26 +54,6 @@
           "maxTokens": 16384,
           "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
           "headers": { "X-Model-Route": "qwen3.6-27b-ud" }
-        },
-        {
-          "id": "google-gemma-4-26b-a4b-it",
-          "name": "Gemma 4 26B",
-          "reasoning": false,
-          "input": ["text"],
-          "contextWindow": 32768,
-          "maxTokens": 8192,
-          "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
-          "headers": { "X-Model-Route": "google-gemma-4-26b-a4b-it" }
-        },
-        {
-          "id": "gemma-4-31b-it-ud",
-          "name": "Gemma 4 31B",
-          "reasoning": false,
-          "input": ["text"],
-          "contextWindow": 32768,
-          "maxTokens": 16384,
-          "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
-          "headers": { "X-Model-Route": "gemma-4-31b-it-ud" }
         }
       ]
     }
