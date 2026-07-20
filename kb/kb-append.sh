@@ -24,10 +24,12 @@ if grep -q '^updated:' "$FILE"; then
 else
   # Add 'updated: <date>' right after 'created:'
   if grep -q '^created:' "$FILE"; then
-    sed -i '' "/^created:/a updated: ${TODAY}" "$FILE"
+    sed -i '' "/^created:/a\\
+updated: ${TODAY}" "$FILE"
   else
     # Fallback: append 'updated' right after 'hits:'
-    sed -i '' "/^hits:/a updated: ${TODAY}" "$FILE"
+    sed -i '' "/^hits:/a\\
+updated: ${TODAY}" "$FILE"
   fi
 fi
 
