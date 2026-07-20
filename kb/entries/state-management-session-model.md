@@ -2,7 +2,7 @@
 title: "State Management & Session Model"
 tags: [prototype-web-builder,state,sessions,uuid,sqlite,schema]
 created: 2026-07-19
-hits: 0
+hits: 1
 ---
 ## Session Model
 - **No user accounts** — anonymous by design
