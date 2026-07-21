@@ -1,6 +1,6 @@
 ---
 name: explorer
-model: enceladus/qwen3.6-35b-a3b
+model: titan/qwen3.5-9b-ud
 description: Read-only codebase exploration specialist for focused searches, repository reconnaissance, and evidence-backed summaries. Use when you need fast context from files without edits.
 tools: [read, grep, find, ls]
 ---
