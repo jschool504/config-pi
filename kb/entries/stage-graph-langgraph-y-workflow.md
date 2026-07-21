@@ -2,7 +2,7 @@
 title: "Stage Graph — Langgraph-y Workflow"
 tags: [prototype-web-builder,stage-graph,langgraph,workflow,session-state]
 created: 2026-07-20
-hits: 1
+hits: 2
 ---
 ## Architecture
 Decision-driven stage progression modeled after Langgraph patterns, where each stage is a node in a directed graph and transitions are triggered by LLM tool calls.
