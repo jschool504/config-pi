@@ -2,7 +2,7 @@
 title: "PGlite removal from CRE (v0.2.1)"
 tags: [pglite,database,migration,v0.2.1,typeorm,dependency-removal]
 created: 2026-07-20
-hits: 0
+hits: 1
 ---
 - Main branch v0.2.1 completely removed PGlite (in-memory WASM PostgreSQL). Replaced with TypeORM migration infrastructure for local development.
 - Dependencies removed: , 
