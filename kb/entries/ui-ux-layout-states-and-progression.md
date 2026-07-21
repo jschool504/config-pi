@@ -2,7 +2,8 @@
 title: "UI/UX — Layout States and Progression"
 tags: [prototype-web-builder,ui-ux,layout,chat,sidebar,progress-bar,magic-loading]
 created: 2026-07-20
-updated: 2026-07-21hits: 2
+updated: 2026-07-21
+hits: 2
 ---
 ## Layout States
 - **Phase 1: Full-Screen Chat** — On session start, the entire viewport is a chat interface. User describes their project freely.
@@ -24,7 +25,7 @@ updated: 2026-07-21hits: 2
 - Users can see what the LLM is doing, not just the final result
 - Silent validation errors are invisible to the user — corrections happen backend-side
 
-### Update: 2026-07-21
+### Update: 2026-07-21 (corrected)
 
 ## Three-State UI System
 
@@ -35,14 +36,13 @@ updated: 2026-07-21hits: 2
 
 ### Transitions
 - **Landing → Discovery**: On initial submit, snaps into full-screen chat view.
-- **Discovery → Sidebar**: Triggered by  tool call from LLM at end of Discovery stage.
+- **Discovery → Sidebar**: Triggered by `next_stage` tool call from LLM at end of Discovery stage.
 
 ### State Enums
-- :  — controls which view is rendered
-- :  — controls preview panel behavior
+- `AppState`: `'Landing' | 'Discovery' | 'Sidebar'` — controls which view is rendered
+- `PreviewState`: `'Idle' | 'Loading' | 'Ready'` — controls preview panel behavior
 
 ### Preview Loading UX
-- Skeleton loader with  blocks displayed during preview generation
+- Skeleton loader with `animate-pulse` blocks displayed during preview generation
 - Prevents jarring blank-space during loading transitions
-- Input field disabled while preview is in Loading state
-
+- Input field disabled while preview is in `Loading` state
