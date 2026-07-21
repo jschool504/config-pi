@@ -77,3 +77,21 @@ Key rule: Always spread `state.messages` before invoking the model, and return o
 - **Production**: Use a Postgres-backed checkpointer keyed by `thread_id = sessionId`.
 - **What checkpointers buy**: Crash recovery, human-in-the-loop capability, debug/replay.
 - **What checkpointers do NOT do**: They do NOT enable prompt caching — that is purely about request bytes sent to the LLM.
+
+### Update: 2026-07-21
+
+
+### Sufficiency Gate Routing
+
+Use a conditional routing function to gate on sufficiency and confidence before proceeding to deeper evaluation.
+
+```typescript
+function routeSufficiency(state: State) {
+  if (!state.sufficiency.sufficient || state.sufficiency.confidence < threshold) {
+    return "emit_insufficiency_error";
+  }
+  return "plan_evaluation";
+}
+```
+
+This pattern keeps the graph clean — sufficiency checks act as early-exit guards before expensive steps.
