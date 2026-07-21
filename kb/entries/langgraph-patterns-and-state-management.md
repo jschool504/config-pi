@@ -52,3 +52,18 @@ const StateAnnotation = Annotation.Root({
   }),
 });
 ```
+
+### Update: 2026-07-21
+
+
+### Node Pattern — Append-Only Delta
+
+Nodes should **never rebuild context**. Instead, append only the new delta (the turn and response).
+
+```typescript
+const turn = new HumanMessage(`Evaluate step: ${instruction}`);
+const ai = await model.invoke([...state.messages, turn]);
+return { messages: [turn, ai], /* other state updates */ };
+```
+
+Key rule: Always spread `state.messages` before invoking the model, and return only the new messages in the delta. The reducer handles merging.
