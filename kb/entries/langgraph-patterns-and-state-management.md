@@ -2,6 +2,7 @@
 title: "LangGraph Patterns and State Management"
 tags: [langgraph,state-management,checkpointers,routing,state-annotation,cre]
 created: 2026-07-21
+updated: 2026-07-21
 hits: 1
 ---
 ### Messages Accumulator Pattern (Single Conversation Chain)
@@ -36,3 +37,18 @@ This pattern keeps the graph clean — sufficiency checks act as early-exit guar
 ### Recursion Limit
 
 Set recursion limit as a **function of batch count**, not a raw static number. This ensures the graph scales with work volume and prevents runaway loops.
+
+### Update: 2026-07-21
+
+### Messages Accumulator Pattern (Single Conversation Chain)
+
+Use `Annotation.Root` with a reducer for append-only message merging — never rebuild the full message list in nodes.
+
+```typescript
+const StateAnnotation = Annotation.Root({
+  messages: Annotation<BaseMessage[]>({
+    reducer: messagesStateReducer,  // append-only merge
+    default: () => [],
+  }),
+});
+```
