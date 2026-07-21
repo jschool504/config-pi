@@ -7,7 +7,7 @@
     }
   },
   "tts": {
-    "engine": "av",
+    "engine": "qwen",
     "qwen": {
       "voice": "aiden"
     }
