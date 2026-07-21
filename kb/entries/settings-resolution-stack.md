@@ -2,7 +2,7 @@
 title: "Settings Resolution Stack"
 tags: [settings,configuration,environment,secrets,RDS,dot-notation,deepMerge,circular-dependency]
 created: 2026-07-21
-hits: 0
+hits: 1
 ---
 The CRE uses a hierarchical settings system for configuration management:
 
