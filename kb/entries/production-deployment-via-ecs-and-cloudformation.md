@@ -2,7 +2,7 @@
 title: "Production deployment via ECS and CloudFormation"
 tags: [deployment,ecs,cloudformation,production,aws,docker]
 created: 2026-07-21
-hits: 0
+hits: 1
 ---
 Production CRE is deployed to AWS ECS using CloudFormation templates located in .
 

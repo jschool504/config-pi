@@ -2,7 +2,7 @@
 title: "getSettingsDir resolution logic and production path"
 tags: [settings,environment-variables,production,ecs,configuration,directory-resolution]
 created: 2026-07-21
-hits: 0
+hits: 1
 ---
 The Settings service uses  to locate the  directory at startup.
 
