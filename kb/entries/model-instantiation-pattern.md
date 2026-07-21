@@ -2,7 +2,7 @@
 title: "Model Instantiation Pattern"
 tags: [llm,models,ChatBedrockConverse,llm-providers,provider-injection,context,caching,sonnet,haiku]
 created: 2026-07-21
-hits: 1
+hits: 2
 ---
 All ChatBedrockConverse LLM instances are created in `core/src/providers/llm-providers.ts`.
 
