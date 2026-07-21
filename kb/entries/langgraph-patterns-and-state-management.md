@@ -3,7 +3,7 @@ title: "LangGraph Patterns and State Management"
 tags: [langgraph,state-management,checkpointers,routing,state-annotation,cre]
 created: 2026-07-21
 updated: 2026-07-21
-hits: 1
+hits: 2
 ---
 ### Messages Accumulator Pattern (Single Conversation Chain)
 
