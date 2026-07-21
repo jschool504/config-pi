@@ -67,3 +67,13 @@ return { messages: [turn, ai], /* other state updates */ };
 ```
 
 Key rule: Always spread `state.messages` before invoking the model, and return only the new messages in the delta. The reducer handles merging.
+
+### Update: 2026-07-21
+
+
+### Checkpointers
+
+- **MemorySaver**: In-memory only — fine for tests and dev, but does NOT survive process restarts.
+- **Production**: Use a Postgres-backed checkpointer keyed by `thread_id = sessionId`.
+- **What checkpointers buy**: Crash recovery, human-in-the-loop capability, debug/replay.
+- **What checkpointers do NOT do**: They do NOT enable prompt caching — that is purely about request bytes sent to the LLM.
