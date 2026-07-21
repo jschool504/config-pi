@@ -2,6 +2,7 @@
 title: "PGlite removal from CRE (v0.2.1)"
 tags: [pglite,database,migration,v0.2.1,typeorm,dependency-removal]
 created: 2026-07-20
+updated: 2026-07-20
 hits: 1
 ---
 - Main branch v0.2.1 completely removed PGlite (in-memory WASM PostgreSQL). Replaced with TypeORM migration infrastructure for local development.
@@ -14,3 +15,14 @@ hits: 1
   - Example/project files: Remove "pglite" from database type unions
   - dist/database-settings.d.ts: PGLITE enum value will be gone from main
 - ADR 0017 and 0019 document the original PGlite adoption and migration rationale
+
+### Update: 2026-07-20
+
+## Content Correction (2026-07-20)
+
+The following lines had backtick-quoted text stripped during initial creation. Corrected content:
+
+- Dependencies removed: @electric-sql/pglite, typeorm-pglite
+- config.test.ts: Change type: "pglite" defaults to type: "postgres"
+- Example/project files: Remove "pglite" from database type unions
+- dist/database-settings.d.ts: PGLITE enum value will be gone from main
