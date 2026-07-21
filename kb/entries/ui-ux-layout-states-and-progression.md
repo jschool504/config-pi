@@ -2,7 +2,7 @@
 title: "UI/UX — Layout States and Progression"
 tags: [prototype-web-builder,ui-ux,layout,chat,sidebar,progress-bar,magic-loading]
 created: 2026-07-20
-hits: 1
+hits: 2
 ---
 ## Layout States
 - **Phase 1: Full-Screen Chat** — On session start, the entire viewport is a chat interface. User describes their project freely.

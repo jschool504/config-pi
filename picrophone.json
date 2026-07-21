@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "stt": {
+    "engine": "whisper",
+    "whisper": {
+      "model": "base"
+    }
+  },
+  "tts": {
+    "engine": "av",
+    "qwen": {
+      "voice": "aiden"
+    }
+  }
+}
