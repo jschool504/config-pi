@@ -2,7 +2,7 @@
 title: "Bedrock Prompt Caching Patterns"
 tags: [aws-bedrock,prompt-caching,langchain,optimization,llm,performance,ChatBedrockConverse,cost-reduction]
 created: 2026-07-21
-hits: 0
+hits: 1
 ---
 Prompt caching via Bedrock Converse API (ChatBedrockConverse from @langchain/aws):
 - Uses cachePoint content blocks (verify exact shape against installed @langchain/aws version)
