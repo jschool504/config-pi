@@ -3,7 +3,7 @@ title: "BEDROCK_MODEL_ID env var is never read at runtime"
 tags: [aws-bedrock,llm,environment-variables,settings,configuration]
 created: 2026-07-21
 updated: 2026-07-21
-hits: 2
+hits: 3
 ---
 The BEDROCK_MODEL_ID environment variable is documented in  but is **never actually read** anywhere in the CRE codebase.
 
