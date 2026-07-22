@@ -18,3 +18,52 @@ CURRENT: __start__ -> parse_points -> breakdown_points -> evaluate_point -> save
 PROPOSED: __start__ -> establish_context -> assess_sufficiency -> [gate] -> plan_evaluation -> execute_step -> save_step -> route_execution -> reconcile -> persist_recommendation -> __end__
 
 Inline code fixes: 'messages' array in state with 'messagesStateReducer'.
+
+### Update: 2026-07-21
+
+## Implementation Task Breakdown (18 tasks, 8 phases)
+
+### Phase 1 — Foundation (Tasks 1-2)
+- **Task 1:** Define Zod schemas in `core/src/engines/langgraph/schemas.ts` (new file)
+  - SufficiencyVerdict: { sufficient: boolean, confidence: number, coveredDomains: string[], missingDomains: string[], rationale: string }
+  - PlanStep: { id: string, instruction: string, category: string, dependsOn?: string[] }
+  - EvaluationResult: { stepId: string, verdict: string, reasoning: string, insufficient?: boolean, missingData?: string[] }
+- **Task 2:** Extend recommendation-state.ts with messages accumulator (BaseMessage[] with messagesStateReducer), sufficiency, evaluationPlan, and structured evaluationResults
+
+### Phase 2 — New Nodes (Tasks 3-8)
+- **Task 3:** establish-context.node.ts — pure JS, builds cacheable prefix with cachePoint, no LLM
+- **Task 4:** assess-sufficiency.node.ts — LLM structured output via withStructuredOutput()
+- **Task 5:** emit-insufficiency-error.node.ts — pure JS, diagnostic from missingDomains + rationale
+- **Task 6:** plan-evaluation.node.ts — replaces breakdown_points, appends to conversation
+- **Task 7:** execute-step.node.ts — batchable (3-5 steps per turn), graceful degradation with INSUFFICIENT verdict
+- **Task 8:** reconcile.node.ts — replaces summarize_results, in-chain synthesis over cached prefix
+
+### Phase 3 — Routing (Task 9)
+- routing.ts with routeSufficiency and routeExecution functions, batch-aware
+
+### Phase 4 — Graph Wiring (Tasks 10-11)
+- **Task 10:** Wire new topology in recommendation-graph.ts, remove old nodes
+- **Task 11:** Update save-step for structured EvaluationResult[] and batch writes
+
+### Phase 5 — Prompt Restructuring (Tasks 12-14)
+- **Task 12:** Remove previousEvaluationResults from evaluation prompt, three-block cache ordering
+- **Task 13:** Protocol breakdown prompt outputs PlanStep[] instead of string[]
+- **Task 14:** Pre-visit report prompt accepts structured EvaluationResult[] ledger
+
+### Phase 6 — Cache Integration (Task 15)
+- llm-providers.ts: verify @langchain/aws cachePoint support, log cache metrics
+
+### Phase 7 — Tests (Tasks 16-17)
+- Unit tests for each new node, integration test for full graph flow
+- Test paths: happy path, insufficient data early-exit, batch boundary
+
+### Phase 8 — Cleanup (Task 18)
+- Delete: parse-points.node.ts, route-execution.node.ts, summarize-results.node.ts
+- Update exports, verify clean build
+
+## Rollout Order (confirmed)
+1. Cache breakpoints + prompt reordering (non-behavioral)
+2. Data sufficiency gate
+3. Single conversation chain (messages reducer)
+4. Batching + rolling cache point
+5. Postgres checkpointer (optional)
