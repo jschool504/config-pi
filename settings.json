@@ -3,7 +3,7 @@
   "defaultProvider": "titan",
   "defaultModel": "qwen3.6-27b-ud",
   "defaultThinkingLevel": "high",
-  "hideThinkingBlock": false,
+  "hideThinkingBlock": true,
   "theme": "dark",
   "packages": [
     "npm:@mjakl/pi-subagent",
